@@ -80,11 +80,12 @@ dependencies {
     implementation "androidx.core:core-ktx:$core_ktx"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine"
 
     // AndroidX
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
-    implementation "androidx.fragment:fragment:$fragment"
+    implementation "androidx.fragment:fragment-ktx:$fragment"
     implementation "androidx.appcompat:appcompat:$appcompat"
 
     // Material
@@ -135,4 +136,3 @@ dependencies {
     // Espresso dependencies
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
 }
-
