@@ -1,12 +1,14 @@
-apply plugin: 'com.android.application'
+apply plugin: "com.android.application"
 
-apply plugin: 'kotlin-android'
+apply plugin: "kotlin-android"
 
-apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-android-extensions"
+
+apply plugin: "kotlin-kapt"
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+
     defaultConfig {
         applicationId "net.furkanakdemir.websocketsample"
         minSdkVersion 21
@@ -21,15 +23,116 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    lintOptions {
+        abortOnError true
+        absolutePaths false
+        lintConfig file('../qa/lint.xml')
+    }
+}
+
+ext {
+    dagger = "2.24"
+    lifecycle = "2.1.0-rc01"
+    timber = "4.7.1"
+    fragment = "1.1.0-rc04"
+    constraintlayout = "1.1.3"
+    appcompat = "1.0.2"
+    material = "1.0.0"
+    recyclerview = "1.0.0"
+    retrofit = "2.6.0"
+    logging_interceptor = "4.1.0"
+
+    junit = "4.12"
+    espresso = "3.2.0"
+    annotation = "1.1.0"
+    test_runner = "1.2.0"
+    test_rules = "1.2.0"
+    test_core = "1.2.0"
+    ext_junit = "1.1.1"
+    ext_truth = "1.2.0"
+    truth = "1.0"
+
+    core_ktx = "1.0.2"
+    coroutine = "1.3.0"
+    mockito_kotlin = "2.1.0"
+    mockito_core = "2.23.0"
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "androidx.core:core-ktx:$core_ktx"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine"
+
+    // AndroidX
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
+    implementation "androidx.fragment:fragment:$fragment"
+    implementation "androidx.appcompat:appcompat:$appcompat"
+
+    // Material
+    implementation "com.google.android.material:material:$material"
+
+    implementation "androidx.recyclerview:recyclerview:$recyclerview"
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle"
+    testImplementation "androidx.arch.core:core-testing:$lifecycle"
+
+    // Network
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor"
+
+    // Dagger
+    implementation "com.google.dagger:dagger-android:$dagger"
+    implementation "com.google.dagger:dagger-android-support:$dagger"
+    kapt "com.google.dagger:dagger-android-processor:$dagger"
+    kapt "com.google.dagger:dagger-compiler:$dagger"
+
+    // Logging
+    implementation "com.jakewharton.timber:timber:$timber"
+
+    // JUnit
+    testImplementation "junit:junit:$junit"
+
+    // Core library
+    androidTestImplementation "androidx.test:core:$test_core"
+    testImplementation "org.mockito:mockito-core:$mockito_core"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin"
+
+    // Annotation
+    androidTestImplementation "androidx.annotation:annotation:$annotation"
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation "androidx.test:runner:$test_runner"
+    androidTestImplementation "androidx.test:rules:$test_rules"
+
+    // Assertions
+    androidTestImplementation "androidx.test.ext:junit:$ext_junit"
+    androidTestImplementation "androidx.test.ext:truth:$ext_truth"
+    androidTestImplementation "com.google.truth:truth:$truth"
+
+    // Espresso dependencies
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
 }
+
