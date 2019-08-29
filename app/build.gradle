@@ -54,6 +54,7 @@ ext {
     material = "1.0.0"
     recyclerview = "1.0.0"
     retrofit = "2.6.0"
+    okhttp = "4.1.0"
     logging_interceptor = "4.1.0"
 
     junit = "4.12"
@@ -99,9 +100,9 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:$lifecycle"
 
     // Network
+    implementation "com.squareup.okhttp3:okhttp:$okhttp"
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor"
 
     // Dagger

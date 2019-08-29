@@ -10,18 +10,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.get
+import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_message_list.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import net.furkanakdemir.websocketsample.R
 import net.furkanakdemir.websocketsample.data.Message
 import net.furkanakdemir.websocketsample.data.Result
 import net.furkanakdemir.websocketsample.ext.hide
+import net.furkanakdemir.websocketsample.ext.hideKeyboard
 import net.furkanakdemir.websocketsample.ext.show
 import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
  */
+@ExperimentalCoroutinesApi
 class MessageListFragment : DaggerFragment() {
 
     private lateinit var messageAdapter: MessageAdapter
@@ -57,14 +61,36 @@ class MessageListFragment : DaggerFragment() {
             }
         })
 
+        messageViewModel.titleLiveData.observe(viewLifecycleOwner, Observer {
+            requireActivity().title = it
+        })
+
+        messageViewModel.snackbarLiveData.observe(viewLifecycleOwner, Observer {
+            Snackbar.make(rootView, it, Snackbar.LENGTH_LONG).show()
+        })
+
         messageAdapter = MessageAdapter()
         messageRecyclerView.adapter = messageAdapter
+
+
+        submitButton.setOnClickListener {
+            val message = textInputLayout.editText?.text.toString()
+
+            messageViewModel.sendEvent(message)
+
+            hideKeyboard()
+        }
+
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         messageViewModel.getMessages()
+        messageViewModel.getEvents()
+
+
     }
 
     private fun showLoading() {
