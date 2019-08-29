@@ -20,7 +20,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
 
@@ -40,7 +40,7 @@ android {
     lintOptions {
         abortOnError true
         absolutePaths false
-        lintConfig file('../qa/lint.xml')
+        lintConfig file("../qa/lint.xml")
     }
 }
 
@@ -81,7 +81,7 @@ dependencies {
     implementation "androidx.core:core-ktx:$core_ktx"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine"
 
     // AndroidX
@@ -136,4 +136,6 @@ dependencies {
 
     // Espresso dependencies
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espresso"
 }

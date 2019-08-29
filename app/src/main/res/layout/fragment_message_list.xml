@@ -25,6 +25,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:id="@+id/messageEditText"
                 android:layout_height="wrap_content"
                 android:hint="@string/list_message_hint" />
         </com.google.android.material.textfield.TextInputLayout>
