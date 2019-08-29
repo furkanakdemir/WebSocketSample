@@ -48,7 +48,6 @@ class WebSocketEventRepository @Inject constructor(private val socketService: We
     }
 
     sealed class WebSocketEvent {
-
         object Connected : WebSocketEvent()
         object Disconnected : WebSocketEvent()
         class Message(val message: String) : WebSocketEvent()

@@ -1,5 +1,6 @@
 package net.furkanakdemir.websocketsample.ui
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -127,7 +128,8 @@ class MessageViewModel @Inject constructor(
         }
     }
 
-    override fun onCleared() {
+    @VisibleForTesting(otherwise = VisibleForTesting.PROTECTED)
+    public override fun onCleared() {
         super.onCleared()
         eventRepository.unregister()
     }
