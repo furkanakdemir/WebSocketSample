@@ -14,12 +14,15 @@ import net.furkanakdemir.websocketsample.data.Result
 import net.furkanakdemir.websocketsample.network.websocket.EventRepository
 import net.furkanakdemir.websocketsample.network.websocket.WebSocketEventRepository
 import net.furkanakdemir.websocketsample.util.SingleLiveEvent
+import net.furkanakdemir.websocketsample.util.validator.MessageValidator
+import timber.log.Timber
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 class MessageViewModel @Inject constructor(
     private val repository: MessageRepository,
-    private val eventRepository: EventRepository
+    private val eventRepository: EventRepository,
+    private val validator: MessageValidator
 ) :
     ViewModel() {
 
@@ -106,21 +109,23 @@ class MessageViewModel @Inject constructor(
 
     private fun processUpdateMessage(message: String) {
 
-        val result = _messageLiveData.value
+        if (validator.isValidMessage(message)) {
+            val result = _messageLiveData.value
 
-        if (result is Result.Success<*>) {
-            val messages = ArrayList((result.data as MutableList<Message>).map { it.copy() })
+            if (result is Result.Success<*>) {
+                val messages = ArrayList((result.data as MutableList<Message>).map { it.copy() })
 
-            messages.find {
-                it.id.toString() == message
-            }?.let {
-                it.name = "DONE"
+                messages.find {
+                    it.id.toString() == message.substringBefore("-")
+                }?.let {
+                    it.name = message.substringAfter("-")
+                }
+
+                _messageLiveData.postValue(Result.Success(messages))
             }
-
-            _messageLiveData.postValue(Result.Success(messages))
+        } else {
+            Timber.w("Invalid message: $message")
         }
-
-
     }
 
     override fun onCleared() {

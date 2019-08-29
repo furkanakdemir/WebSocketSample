@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import net.furkanakdemir.websocketsample.R
 import net.furkanakdemir.websocketsample.data.Message
 
-
 class MessageAdapter : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
     private val messages = mutableListOf<Message>()
@@ -41,7 +40,6 @@ class MessageAdapter : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() 
         } else {
             holder.nameTextView.text = payloads[0].toString()
         }
-
     }
 
     fun update(newMessages: List<Message>) {
@@ -65,7 +63,6 @@ class MessageAdapter : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() 
             return oldList[oldItemPosition].id == newList[newItemPosition].id
         }
 
-
         override fun getOldListSize(): Int = oldList.size
 
         override fun getNewListSize(): Int = newList.size
@@ -73,7 +70,6 @@ class MessageAdapter : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             return oldList[oldItemPosition].name.equals(newList[newItemPosition].name)
         }
-
 
         override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
             val oldItem = oldList[oldItemPosition]
@@ -83,7 +79,6 @@ class MessageAdapter : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() 
                 newItem.name
             else
                 oldItem.name
-
         }
     }
 }
