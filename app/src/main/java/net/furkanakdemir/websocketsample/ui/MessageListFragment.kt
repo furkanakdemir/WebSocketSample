@@ -1,6 +1,5 @@
 package net.furkanakdemir.websocketsample.ui
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,17 +34,16 @@ class MessageListFragment : DaggerFragment() {
     private lateinit var messageViewModel: MessageViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_message_list, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         messageViewModel = ViewModelProviders.of(requireActivity(), viewModelFactory).get()
 
@@ -72,7 +70,6 @@ class MessageListFragment : DaggerFragment() {
         messageAdapter = MessageAdapter()
         messageRecyclerView.adapter = messageAdapter
 
-
         submitButton.setOnClickListener {
             val message = textInputLayout.editText?.text.toString()
 
@@ -80,8 +77,6 @@ class MessageListFragment : DaggerFragment() {
 
             hideKeyboard()
         }
-
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -89,8 +84,6 @@ class MessageListFragment : DaggerFragment() {
 
         messageViewModel.getMessages()
         messageViewModel.getEvents()
-
-
     }
 
     private fun showLoading() {
@@ -111,5 +104,4 @@ class MessageListFragment : DaggerFragment() {
         messageRecyclerView.hide()
         emptyTextView.show()
     }
-
 }

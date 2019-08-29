@@ -5,7 +5,6 @@ import androidx.fragment.app.commit
 import dagger.android.support.DaggerAppCompatActivity
 import net.furkanakdemir.websocketsample.R
 
-
 class MainActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

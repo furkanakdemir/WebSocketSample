@@ -16,7 +16,6 @@ abstract class MessageModule {
     abstract fun bindDomainMapper(mapper: DomainMapper):
             Mapper<RemoteResponse.MessageRaw, Message>
 
-
     @Binds
     abstract fun bindMessageRepository(repository: WebSocketMessageRepository):
             MessageRepository
@@ -28,5 +27,4 @@ abstract class MessageModule {
     @Binds
     abstract fun bindMessageValidator(validator: WebSocketMessageValidator):
             MessageValidator
-
 }

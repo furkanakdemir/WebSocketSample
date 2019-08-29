@@ -3,7 +3,6 @@ package net.furkanakdemir.websocketsample.network.websocket
 import okhttp3.*
 import javax.inject.Inject
 
-
 class WebSocketService @Inject constructor() : WebSocketListener() {
 
     private lateinit var listener: CustomWebSocketListener
@@ -12,7 +11,6 @@ class WebSocketService @Inject constructor() : WebSocketListener() {
     private lateinit var client: OkHttpClient
 
     fun start(customWebSocketListener: CustomWebSocketListener) {
-
 
         listener = customWebSocketListener
         client = OkHttpClient()
@@ -30,7 +28,6 @@ class WebSocketService @Inject constructor() : WebSocketListener() {
     fun send(message: String) {
         ws.send(message)
     }
-
 
     override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
         listener.onDisconnected()
@@ -53,7 +50,5 @@ class WebSocketService @Inject constructor() : WebSocketListener() {
         fun onConnected()
         fun onDisconnected()
         fun onMessageReceived(message: String)
-
     }
-
 }

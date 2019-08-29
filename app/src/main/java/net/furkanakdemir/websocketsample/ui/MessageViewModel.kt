@@ -42,7 +42,6 @@ class MessageViewModel @Inject constructor(
     val updateLiveData: LiveData<Message>
         get() = _updateLiveData
 
-
     fun getMessages() {
         viewModelScope.launch {
             when (val messageResult = repository.getMessages()) {

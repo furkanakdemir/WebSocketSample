@@ -1,6 +1,5 @@
 package net.furkanakdemir.websocketsample.data
 
-
 import com.google.gson.annotations.SerializedName
 
 data class RemoteResponse(

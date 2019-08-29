@@ -27,7 +27,6 @@ class MessageAdapter : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() 
 
         holder.nameTextView.text = message.name
         holder.idTextView.text = String.format("ID: %d", message.id)
-
     }
 
     override fun onBindViewHolder(

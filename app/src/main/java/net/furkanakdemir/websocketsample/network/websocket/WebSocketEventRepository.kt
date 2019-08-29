@@ -18,7 +18,6 @@ class WebSocketEventRepository @Inject constructor(private val socketService: We
             override fun onConnected() {
                 runBlocking {
                     channel.send(WebSocketEvent.Connected)
-
                 }
             }
 
@@ -31,7 +30,6 @@ class WebSocketEventRepository @Inject constructor(private val socketService: We
             override fun onMessageReceived(message: String) {
                 push(message)
             }
-
         })
     }
 
