@@ -1,6 +1,10 @@
 package net.furkanakdemir.websocketsample.network.websocket
 
-import okhttp3.*
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
+import okhttp3.WebSocket
+import okhttp3.WebSocketListener
 import javax.inject.Inject
 
 class WebSocketService @Inject constructor() : WebSocketListener() {
@@ -14,7 +18,7 @@ class WebSocketService @Inject constructor() : WebSocketListener() {
 
         listener = customWebSocketListener
         client = OkHttpClient()
-        request = Request.Builder().url("wss://echo.websocket.org").build()
+        request = Request.Builder().url(BASE_URL_WEB_SOCKET).build()
 
         ws = client.newWebSocket(request, this)
 
@@ -43,6 +47,7 @@ class WebSocketService @Inject constructor() : WebSocketListener() {
 
     companion object {
         private const val NORMAL_CLOSURE_STATUS = 1000
+        private const val BASE_URL_WEB_SOCKET = "wss://echo.websocket.org"
     }
 
     interface CustomWebSocketListener {

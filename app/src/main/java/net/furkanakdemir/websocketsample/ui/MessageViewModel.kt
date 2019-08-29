@@ -46,7 +46,7 @@ class MessageViewModel @Inject constructor(
         viewModelScope.launch {
             when (val messageResult = repository.getMessages()) {
                 is Result.Success<*> -> {
-                    _messageLiveData.value = Result.Success(messageResult.data as List<Message>)
+                    _messageLiveData.value = Result.Success(messageResult.data as List<*>)
                 }
 
                 is Result.Failure -> {

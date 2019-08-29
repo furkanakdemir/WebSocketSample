@@ -11,7 +11,12 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.get
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_message_list.*
+import kotlinx.android.synthetic.main.fragment_message_list.emptyTextView
+import kotlinx.android.synthetic.main.fragment_message_list.messageRecyclerView
+import kotlinx.android.synthetic.main.fragment_message_list.progressBar
+import kotlinx.android.synthetic.main.fragment_message_list.rootView
+import kotlinx.android.synthetic.main.fragment_message_list.submitButton
+import kotlinx.android.synthetic.main.fragment_message_list.textInputLayout
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import net.furkanakdemir.websocketsample.R
 import net.furkanakdemir.websocketsample.data.Message
@@ -24,6 +29,7 @@ import javax.inject.Inject
 /**
  * A simple [Fragment] subclass.
  */
+@Suppress("UNCHECKED_CAST")
 @ExperimentalCoroutinesApi
 class MessageListFragment : DaggerFragment() {
 

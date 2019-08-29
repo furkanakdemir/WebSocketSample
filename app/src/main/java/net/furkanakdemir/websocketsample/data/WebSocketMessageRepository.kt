@@ -3,6 +3,7 @@ package net.furkanakdemir.websocketsample.data
 import net.furkanakdemir.websocketsample.network.MessageService
 import javax.inject.Inject
 
+@Suppress("TooGenericExceptionCaught")
 class WebSocketMessageRepository @Inject constructor(
     private val messageService: MessageService,
     private val mapper: @JvmSuppressWildcards Mapper<RemoteResponse.MessageRaw, Message>
